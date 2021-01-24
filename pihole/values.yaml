@@ -2,30 +2,17 @@ pihole:
     # Default values for pihole.
     # This is a YAML-formatted file.
     # Declare variables to be passed into your templates.
-    image:
-      repository: "pihole/pihole"
-      tag: v5.5.1
-      pullPolicy: IfNotPresent
-
-    serviceWeb:
-      type: LoadBalancer
-      externalTrafficPolicy: Local
-      loadBalancerIP: "192.168.24.20"
-        # a fixed LoadBalancer IP
-      annotations:
-        # metallb.universe.tf/address-pool: network-services
-        metallb.universe.tf/allow-shared-ip: pihole-svc
 
     serviceDns:
       type: LoadBalancer
       externalTrafficPolicy: Local
-      loadBalancerIP: "192.168.24.20"
+      # loadBalancerIP: ""
         # a fixed LoadBalancer IP
       annotations:
         # metallb.universe.tf/address-pool: network-services
         metallb.universe.tf/allow-shared-ip: pihole-svc
 
-    virtualHost: pi.hole
+    virtualHost: pihole.in.lab
 
     ingress:
       enabled: true
