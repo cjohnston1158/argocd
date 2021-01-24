@@ -6,12 +6,20 @@ pihole:
     serviceDns:
       type: LoadBalancer
       externalTrafficPolicy: Local
-      # loadBalancerIP: ""
+      loadBalancerIP: "192.168.24.20"
         # a fixed LoadBalancer IP
       annotations:
         # metallb.universe.tf/address-pool: network-services
         metallb.universe.tf/allow-shared-ip: pihole-svc
 
+    serviceDns:
+      type: LoadBalancer
+      externalTrafficPolicy: Local
+      loadBalancerIP: "192.168.24.20"
+        # a fixed LoadBalancer IP
+      annotations:
+        # metallb.universe.tf/address-pool: network-services
+        metallb.universe.tf/allow-shared-ip: pihole-svc
     virtualHost: pihole.in.lab
 
     ingress:
