@@ -36,11 +36,11 @@ pihole:
 
     persistentVolumeClaim:
       # set to true to use pvc
-      enabled: true
+      enabled: false
       # set to true to use you own pvc
       # existingClaim: myExistingClaim
-      annotations:
-        backup.velero.io/backup-volumes: config
+      #annotations:
+      #  backup.velero.io/backup-volumes: config
 
       accessModes:
         - ReadWriteOnce
