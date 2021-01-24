@@ -3,3 +3,4 @@ argo-cd:
   global:
     image:
       tag: v1.8.2
+templates: {}
