@@ -1,2 +1,7 @@
+argo-cd:
+  ingress: true
+  annotations:
+    # metallb.universe.tf/address-pool: network-services
+    metallb.universe.tf/allow-shared-ip: argocd-svc
 templates:
     argo_uri: 'argo.in.lab'
