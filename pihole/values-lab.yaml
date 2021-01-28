@@ -2,7 +2,13 @@ pihole:
     # Default values for pihole.
     # This is a YAML-formatted file.
     # Declare variables to be passed into your templates.
+    image:
+      tag: v5.6
 
+    doh:
+      # set to true to enabled dns over https via cloudflared
+      repository: "registry.glacier.dev/cdk/cloudflared"
+      tag: latest
     serviceDns:
       loadBalancerIP: "192.168.24.23"
 
