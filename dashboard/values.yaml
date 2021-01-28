@@ -1,7 +1,7 @@
 dashboard:
 
   service:
-    type: LoadBalancer
+    type: ClusterIP
     externalPort: 443
 
   ## set a specific load balancer Ip if you're using one
