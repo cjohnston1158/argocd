@@ -1,3 +1,5 @@
 dashboard:
   service:
     loadBalancerIP: 192.168.24.24
+  hosts:
+    - kubernetes-dashboard.in.lab
