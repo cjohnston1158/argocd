@@ -107,5 +107,3 @@ pihole:
     regex: {}
       # Add regular expression blacklist items
       # - (^|\.)facebook\.com$
-templates:
-    secrets: {}
