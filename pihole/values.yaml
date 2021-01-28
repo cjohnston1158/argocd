@@ -5,6 +5,7 @@ pihole:
     image:
       repository: "registry.glacier.dev/pihole/pihole"
       pullPolicy: IfNotPresent
+      tag: v5.6
 
     serviceDns:
       type: LoadBalancer
