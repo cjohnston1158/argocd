@@ -124,3 +124,7 @@ traefik:
   globalArguments:
     - "--global.checknewversion"
     - "--serversTransport.insecureSkipVerify=true"
+templates:
+    install_cert: false
+    http_redirect:
+        enable: true
