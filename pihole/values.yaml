@@ -55,9 +55,9 @@ pihole:
     adminPassword: "admin"
 
     # Use an existing secret for the admin password.
-    #admin:
-    #  existingSecret: ""
-    #  passwordKey: "password"
+    admin:
+      existingSecret: "pihole-admin"
+      passwordKey: "password"
 
     # extraEnvironmentVars is a list of extra enviroment variables to set for pihole to use
     extraEnvVars:
