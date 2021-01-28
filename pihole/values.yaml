@@ -6,7 +6,6 @@ pihole:
     serviceDns:
       type: LoadBalancer
       externalTrafficPolicy: Local
-      loadBalancerIP: "192.168.24.23"
         # a fixed LoadBalancer IP
       annotations:
         # metallb.universe.tf/address-pool: network-services
@@ -15,12 +14,10 @@ pihole:
     serviceWeb:
       type: LoadBalancer
       externalTrafficPolicy: Local
-      loadBalancerIP: "192.168.24.23"
         # a fixed LoadBalancer IP
       annotations:
         # metallb.universe.tf/address-pool: network-services
         metallb.universe.tf/allow-shared-ip: pihole-svc
-    virtualHost: pihole.in.lab
 
     ingress:
       enabled: true
@@ -29,9 +26,6 @@ pihole:
           traefik.ingress.kubernetes.io/router.tls: "true"
           traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
       path: /
-      hosts:
-        # virtualHost (default value is pi.hole) will be appended to the hosts
-        - pihole.in.lab
 
     persistentVolumeClaim:
       # set to true to use pvc
@@ -50,14 +44,6 @@ pihole:
     tolerations: []
 
     affinity: {}
-
-    # Administrator password when not using an existing secret (see below)
-    adminPassword: "admin"
-
-    # Use an existing secret for the admin password.
-    admin:
-      existingSecret: "pihole-admin"
-      passwordKey: "password"
 
     # extraEnvironmentVars is a list of extra enviroment variables to set for pihole to use
     extraEnvVars:
@@ -111,18 +97,8 @@ pihole:
       # - https://hosts-file.net/grm.txt
       # - https://reddestdream.github.io/Projects/MinimalHosts/etc/MinimalHostsBlocker/minimalhosts
 
-    whitelist:
+    whitelist: {}
       # If you want to provide whitelisted domains, add them here.
-        - clients4.google.com
-        - clients2.google.com
-        - s.youtube.com
-        - video-stats.l.google.com
-        - android.clients.google.com
-        - reminders-pa.googleapis.com
-        - firestore.googleapis.com
-        - dl.google.com
-        - sls.update.microsoft.com.akadns.net
-        - fe3.delivery.dsp.mp.microsoft.com.nsatc.net
 
     blacklist: {}
       # If you want to have special domains blacklisted, add them here
