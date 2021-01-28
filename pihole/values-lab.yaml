@@ -49,4 +49,4 @@ pihole:
       # Add regular expression blacklist items
       # - (^|\.)facebook\.com$
 templates:
-    secrets: "lab"
+    secrets: ""
