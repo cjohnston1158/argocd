@@ -7,7 +7,6 @@ pihole:
 
     doh:
       # set to true to enabled dns over https via cloudflared
-      repository: "registry.glacier.dev/cdk/cloudflared"
       tag: latest
     serviceDns:
       loadBalancerIP: "192.168.24.23"

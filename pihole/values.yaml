@@ -3,7 +3,7 @@ pihole:
     # This is a YAML-formatted file.
     # Declare variables to be passed into your templates.
     image:
-      repository: "registry.glacier.dev/cdk/pihole"
+      repository: "registry.glacier.dev/pihole/pihole"
       pullPolicy: IfNotPresent
 
     serviceDns:
@@ -66,7 +66,7 @@ pihole:
       # set to true to enabled dns over https via cloudflared
       enabled: true
       name: "cloudflared"
-      repository: "crazymax/cloudflared"
+      repository: "registry.glacier.dev/crazymax/cloudflared"
       tag: latest
       pullPolicy: IfNotPresent
       envVars: {}
