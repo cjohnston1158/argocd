@@ -1,0 +1,44 @@
+nfs-client-provisioner:
+  replicaCount: 1
+  strategyType: Recreate
+
+  image:
+    repository: quay.io/external_storage/nfs-client-provisioner
+    tag: v3.1.0-k8s1.11
+    pullPolicy: IfNotPresent
+
+  nfs:
+    server: 10.10.12.10
+    path: 
+    mountOptions:
+
+  # For creating the StorageClass automatically:
+  storageClass:
+    create: true
+
+    # Allow volume to be expanded dynamically
+    allowVolumeExpansion: true
+
+    # Method used to reclaim an obsoleted volume
+    reclaimPolicy: Delete
+
+    # When set to false your PVs will not be archived by the provisioner upon deletion of the PVC.
+    archiveOnDelete: true
+
+    # Set access mode - ReadWriteOnce, ReadOnlyMany or ReadWriteMany
+    accessModes: ReadWriteMany
+
+
+  resources: {}
+    # limits:
+    #  cpu: 100m
+    #  memory: 128Mi
+    # requests:
+    #  cpu: 100m
+    #  memory: 128Mi
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
