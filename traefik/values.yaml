@@ -1,130 +1,23 @@
-traefik:
-  # Default values for Traefik
-  image:
-    name: traefik
-    # defaults to appVersion
-    tag: ""
-    pullPolicy: IfNotPresent
-
-  # Use ingressClass. Ignored if Traefik version < 2.3 / kubernetes < 1.18.x
-  ingressClass:
-    # true is not unit-testable yet, pending https://github.com/rancher/helm-unittest/pull/12
-    enabled: false
-    isDefaultClass: false
-
-  # Create an IngressRoute for the dashboard
-  ingressRoute:
-    dashboard:
-      enabled: true
-      # Additional ingressRoute annotations (e.g. for kubernetes.io/ingress.class)
-      annotations: {}
-      # Additional ingressRoute labels (e.g. for filtering IngressRoute by custom labels)
-      labels: {}
-
-  providers:
-    kubernetesIngress:
-      enabled: true
-      namespaces: []
-        # - "default"
-      # IP used for Kubernetes Ingress endpoints
-      publishedService:
-        enabled: false
-        # Published Kubernetes Service to copy status from. Format: namespace/servicename
-        # By default this Traefik service
-        # pathOverride: ""
-
-  # Add volumes to the traefik pod. The volume name will be passed to tpl.
-  # This can be used to mount a cert pair or a configmap that holds a config.toml file.
-  # After the volume has been mounted, add the configs into traefik by using the `additionalArguments` list below, eg:
-  # additionalArguments:
-  # - "--providers.file.filename=/config/dynamic.toml"
-  volumes: []
-  # - name: public-cert
-  #   mountPath: "/certs"
-  #   type: secret
-  # - name: '{{ printf "%s-configs" .Release.Name }}'
-  #   mountPath: "/config"
-  #   type: configMap
-
-
-  # Configure ports
-  ports:
-    # The name of this one can't be changed as it is used for the readiness and
-    # liveness probes, but you can adjust its config to your liking
-    traefik:
-      port: 9000
-      # Use hostPort if set.
-      # hostPort: 9000
-      #
-      # Use hostIP if set. If not set, Kubernetes will default to 0.0.0.0, which
-      # means it's listening on all your interfaces and all your IPs. You may want
-      # to set this value if you need traefik to listen on specific interface
-      # only.
-      # hostIP: 192.168.100.10
-
-      # Defines whether the port is exposed if service.type is LoadBalancer or
-      # NodePort.
-      #
-      # You SHOULD NOT expose the traefik port on production deployments.
-      # If you want to access it from outside of your cluster,
-      # use `kubectl port-forward` or create a secure ingress
-      expose: false
-      # The exposed port for this service
-      exposedPort: 9000
-      # The port protocol (TCP/UDP)
-      protocol: TCP
-    web:
-      port: 8000
-      # hostPort: 8000
-      expose: true
-      exposedPort: 80
-      # The port protocol (TCP/UDP)
-      protocol: TCP
-      # Use nodeport if set. This is useful if you have configured Traefik in a
-      # LoadBalancer
-      # nodePort: 32080
-      # Port Redirections
-      # Added in 2.2, you can make permanent redirects via entrypoints.
-      # https://docs.traefik.io/routing/entrypoints/#redirection
-      # redirectTo: websecure
-    websecure:
-      port: 8443
-      # hostPort: 8443
-      expose: true
-      exposedPort: 443
-      # The port protocol (TCP/UDP)
-      protocol: TCP
-      # nodePort: 32443
-      # Set TLS at the entrypoint
-      # https://doc.traefik.io/traefik/routing/entrypoints/#tls
-      tls:
-        enabled: false
-        # this is the name of a TLSOption definition
-        options: ""
-        certResolver: ""
-        domains: []
-        # - main: example.com
-        #   sans:
-        #     - foo.example.com
-        #     - bar.example.com
-
-  service:
-    enabled: true
-    type: LoadBalancer
-    # Additional annotations (e.g. for cloud provider specific config)
-    annotations: {}
-    # Additional service labels (e.g. for filtering Service by custom labels)
-    labels: {}
-    # Additional entries here will be added to the service spec. Cannot contains
-    # type, selector or ports entries.
-    spec:
-    #  externalTrafficPolicy: Local
-    #  loadBalancerIP: "192.168.24.24"
-
-  globalArguments:
-    - "--global.checknewversion"
-    - "--serversTransport.insecureSkipVerify=true"
 templates:
     install_cert: false
     http_redirect:
         enable: true
+
+traefik:
+
+  globalArguments:
+    - "--global.checknewversion"
+    - "--serversTransport.insecureSkipVerify=true"
+  service:
+    spec:
+      externalTrafficPolicy: Local
+  # Create an IngressRoute for the dashboard
+  ingressRoute:
+    dashboard:
+      enabled: false
+
+  providers:
+    kubernetesIngress:
+      enabled: true
+      publishedService:
+        enabled: true
