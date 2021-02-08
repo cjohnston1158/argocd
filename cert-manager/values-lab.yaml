@@ -1,6 +1,0 @@
-templates:
-    letsencrypt:
-        email: admin@traefik
-        acme_host: 'dns.traefik'
-        staging: true
-    # secrets: 'lab'
