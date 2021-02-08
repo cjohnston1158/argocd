@@ -1,0 +1,5 @@
+sealed-secrets:
+  image:
+    repository: quay.io/bitnami/sealed-secrets-controller
+    tag: v0.14.1
+    pullPolicy: IfNotPresent
