@@ -8,6 +8,7 @@ pihole:
     doh:
       # set to true to enabled dns over https via cloudflared
       tag: latest
+
     serviceDns:
       loadBalancerIP: "192.168.24.23"
 
@@ -17,15 +18,13 @@ pihole:
 
     ingress:
       hosts:
-        # virtualHost (default value is pi.hole) will be appended to the hosts
         - pihole.in.lab
 
-    # Use an existing secret for the admin password.
     admin:
       existingSecret: "pihole-admin"
       passwordKey: "password"
 
-
+    dnsmasq:
       customDnsEntries: []
       # Here you can add custom dns entries to override the
       # dns resolution with. All lines will be added to the
