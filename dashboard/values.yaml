@@ -1,4 +1,4 @@
-dashboard:
+kubernetes-dashboard:
 
   service:
     type: ClusterIP
@@ -15,6 +15,3 @@ dashboard:
         traefik.ingress.kubernetes.io/router.tls: "true"
         traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
     enabled: true
-
-  annotations:
-    metallb.universe.tf/allow-shared-ip: dashboard-svc
