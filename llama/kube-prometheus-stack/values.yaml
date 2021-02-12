@@ -27,9 +27,9 @@ kube-prometheus-stack:
               traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
           path: /
         persistence:
-          # type: pvc
+          type: pvc
           enabled: true
-          # storageClassName: default
+          storageClassName: nfs-client
           accessModes:
             - ReadWriteOnce
           size: 10Gi
@@ -57,7 +57,7 @@ kube-prometheus-stack:
             storageSpec:
                 volumeClaimTemplate:
                   spec:
-                    #storageClassName: gluster
+                    storageClassName: nfs-client
                     accessModes: ["ReadWriteOnce"]
                     resources:
                       requests:
