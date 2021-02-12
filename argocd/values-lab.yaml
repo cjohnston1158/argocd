@@ -4,7 +4,7 @@ argo-cd:
     # metallb.universe.tf/address-pool: network-services
     metallb.universe.tf/allow-shared-ip: argocd-svc
   server:
-    extraArgs: []
+    extraArgs:
       - --insecure
     hosts:
       - argo.in.lab
