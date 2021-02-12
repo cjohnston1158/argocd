@@ -18,5 +18,5 @@ dashboard:
 metrics-server:
   image:
     repository: k8s.gcr.io/metrics-server-amd64
-    tag: v0.3.6
+    tag: v0.4.2
     pullPolicy: IfNotPresent
