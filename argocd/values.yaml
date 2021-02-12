@@ -3,10 +3,11 @@ argo-cd:
   global:
     image:
       tag: v1.8.2
-  ingress:
-    enabled: true
-    annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      traefik.ingress.kubernetes.io/router.tls: "true"
-      traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
+  server:
+    ingress:
+      enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
 templates: {}
