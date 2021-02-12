@@ -17,6 +17,6 @@ dashboard:
     enabled: true
 metrics-server:
   image:
-    repository: k8s.gcr.io/metrics-server-amd64
+    repository: k8s.gcr.io/metrics-server/metrics-server
     tag: v0.4.2
     pullPolicy: IfNotPresent
