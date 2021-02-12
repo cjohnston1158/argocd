@@ -1,6 +1,5 @@
 bitwardenrs:
-    bitwardenrs:
-        domain: "https://bitwarden.in.lab"
-        signupsAllowed: true
+  bitwardenrs:
+    domain: "https://bitwarden.in.lab"
 templates:
-    backup_schedule: ""
+  backup_schedule: ""
