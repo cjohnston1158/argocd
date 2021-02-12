@@ -14,7 +14,11 @@ traefik:
   # Create an IngressRoute for the dashboard
   ingressRoute:
     dashboard:
-      enabled: false
+      enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
 
   providers:
     kubernetesIngress:
