@@ -15,3 +15,8 @@ dashboard:
         traefik.ingress.kubernetes.io/router.tls: "true"
         traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
     enabled: true
+metrics-server:
+  image:
+    repository: k8s.gcr.io/metrics-server-amd64
+    tag: v0.3.6
+    pullPolicy: IfNotPresent
