@@ -1,4 +1,4 @@
-kubernetes-dashboard:
+dashboard:
 
   service:
     type: ClusterIP
