@@ -3,5 +3,8 @@ argo-cd:
   annotations:
     # metallb.universe.tf/address-pool: network-services
     metallb.universe.tf/allow-shared-ip: argocd-svc
+  server:
+      hosts:
+        - argo.in.lab
 templates:
     argo_uri: 'argo.in.lab'
