@@ -1,4 +1,7 @@
 bitwardenrs:
+  image:
+    repository: bitwardenrs/server
+    tag: "1.19.0"
   fullnameOverride: "bitwarden"
   bitwardenrs:
     signupsAllowed: true
