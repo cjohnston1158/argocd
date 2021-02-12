@@ -20,3 +20,16 @@ metrics-server:
     repository: k8s.gcr.io/metrics-server/metrics-server
     tag: v0.4.2
     pullPolicy: IfNotPresent
+  livenessProbe:
+    httpGet:
+      path: /healthz
+      port: https
+      scheme: HTTPS
+    initialDelaySeconds: 300
+
+  readinessProbe:
+    httpGet:
+      path: /healthz
+      port: https
+      scheme: HTTPS
+    initialDelaySeconds: 300
