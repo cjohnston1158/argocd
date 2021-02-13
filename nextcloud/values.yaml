@@ -29,7 +29,7 @@ nextcloud:
     datadir: /var/www/html/data
     tableprefix:
     persistence:
-      subPath:
+      subPath: data
     mail:
       enabled: false
       fromAddress: user
