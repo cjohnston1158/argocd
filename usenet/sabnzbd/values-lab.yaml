@@ -1,4 +1,5 @@
 sabnzbd:
   ingress:
-    hosts: [sabnzbd.in.lab]
-    path: "/"
+    hosts: 
+      - host: sabnzbd.in.lab
+        path: "/"

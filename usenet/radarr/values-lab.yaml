@@ -1,4 +1,5 @@
 radarr:
-  hosts:
-    - host: radarr.in.lab
-      paths: [/]
+  ingress:
+    hosts:
+      - host: radarr.in.lab
+        paths: [/]
