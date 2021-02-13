@@ -29,11 +29,7 @@ nextcloud:
     datadir: /var/www/html/data
     tableprefix:
     persistence:
-      enabled: true
-      type: pvc
-      accessMode: ReadWriteOnce
-      size: "10Gi"
-      storageClassName: nfs-client
+      subPath:
     mail:
       enabled: false
       fromAddress: user
@@ -93,24 +89,12 @@ nextcloud:
   ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
   persistence:
     # Nextcloud Data (/var/www/html)
-    enabled: false
+    enabled: true
     annotations: {}
-    ## nextcloud data Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
-    # storageClass: "-"
-
-    ## A manually managed Persistent Volume and Claim
-    ## Requires persistence.enabled: true
-    ## If defined, PVC must be created manually before volume will be bound
-    # existingClaim:
-
+    type: pvc
     accessMode: ReadWriteOnce
-    size: 8Gi
+    size: "10Gi"
+    storageClassName: nfs-client
 
   ## Prometheus Exporter / Metrics
   ##
