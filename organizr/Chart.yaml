@@ -1,0 +1,8 @@
+name: organizr
+apiVersion: v2
+version: 1.0.0
+dependencies:
+  - name: organizr
+    version: '~3.4.0'
+    appVersion: latest
+    repository: https://k8s-at-home.com/charts/
