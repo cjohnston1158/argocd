@@ -1,5 +1,5 @@
 organizr:
-  organizr:
+    #organizr:
     image:
       organization: linuxserver
     env:
