@@ -1,0 +1,128 @@
+nextcloud:
+## ref: https://hub.docker.com/r/library/nextcloud/tags/
+  image:
+    repository: nextcloud
+    tag: 19.0.3-apache
+    pullPolicy: IfNotPresent
+
+  ingress:
+    enabled: true
+  annotations:
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
+
+  nextcloud:
+    host: nextcloud.in.lab
+    username: admin
+    password: changeme
+    ## Use an existing secret
+    existingSecret:
+      enabled: false
+      # secretName: nameofsecret
+      # usernameKey: username
+      # passwordKey: password
+      # smtpUsernameKey: smtp_username
+      # smtpPasswordKey: smtp_password
+    update: 0
+    datadir: /var/www/html/data
+    tableprefix:
+    persistence:
+      enabled: true
+      type: pvc
+      accessMode: ReadWriteOnce
+      size: "10Gi"
+      storageClassName: nfs-client
+    mail:
+      enabled: false
+      fromAddress: user
+      domain: domain.com
+      smtp:
+        host: domain.com
+        secure: ssl
+        port: 465
+        authtype: LOGIN
+        name: user
+        password: pass
+
+  # For example, to use S3 as primary storage
+  # ref: https://docs.nextcloud.com/server/13/admin_manual/configuration_files/primary_storage.html#simple-storage-service-s3
+  #
+  #  configs:
+  #    s3.config.php: |-
+  #      <?php
+  #      $CONFIG = array (
+  #        'objectstore' => array(
+  #          'class' => '\\OC\\Files\\ObjectStore\\S3',
+  #          'arguments' => array(
+  #            'bucket'     => 'my-bucket',
+  #            'autocreate' => true,
+  #            'key'        => 'xxx',
+  #            'secret'     => 'xxx',
+  #            'region'     => 'us-east-1',
+  #            'use_ssl'    => true
+  #          )
+  #        )
+  #      );
+
+  ## Strategy used to replace old pods
+  ## IMPORTANT: use with care, it is suggested to leave as that for upgrade purposes
+  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+
+
+  # Extra mounts for the pods. Example shown is for connecting a legacy NFS volume
+  # to NextCloud pods in Kubernetes. This can then be configured in External Storage
+  extraVolumes:
+  #  - name: nfs
+  #    nfs:
+  #      server: "10.0.0.1"
+  #      path: "/nextcloud_data"
+  #      readOnly: false
+  extraVolumeMounts:
+  #  - name: nfs
+  #    mountPath: "/legacy_data"
+
+
+  ## Enable persistence using Persistent Volume Claims
+  ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+  persistence:
+    # Nextcloud Data (/var/www/html)
+    enabled: false
+    annotations: {}
+    ## nextcloud data Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    # storageClass: "-"
+
+    ## A manually managed Persistent Volume and Claim
+    ## Requires persistence.enabled: true
+    ## If defined, PVC must be created manually before volume will be bound
+    # existingClaim:
+
+    accessMode: ReadWriteOnce
+    size: 8Gi
+
+  ## Prometheus Exporter / Metrics
+  ##
+  metrics:
+    enabled: true
+
+    replicaCount: 1
+    # The metrics exporter needs to know how you serve Nextcloud either http or https
+    https: false
+    timeout: 5s
+
+    image:
+      repository: xperimental/nextcloud-exporter
+      tag: v0.3.0
+      pullPolicy: IfNotPresent

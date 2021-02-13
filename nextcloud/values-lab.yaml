@@ -1,0 +1,5 @@
+nextcloud:
+  nextcloud:
+    host: nextcloud.in.lab
+    username: admin
+    password: password
