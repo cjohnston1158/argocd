@@ -4,6 +4,10 @@ templates:
         enable: true
 
 traefik:
+  image:
+    name: traefik
+    # defaults to appVersion
+    tag: "2.4"
 
   globalArguments:
     - "--global.checknewversion"
