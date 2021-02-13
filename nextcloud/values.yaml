@@ -2,7 +2,7 @@ nextcloud:
 ## ref: https://hub.docker.com/r/library/nextcloud/tags/
   image:
     repository: nextcloud
-    tag: 19.0.8-apache
+    tag: 20.0.7-apache
     pullPolicy: IfNotPresent
 
   ingress:
