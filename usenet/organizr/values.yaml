@@ -1,6 +1,8 @@
 organizr:
   image:
-    organization: linuxserver
+    repository: organizr/organizr
+    pullPolicy: Always
+    tag: latest
   env:
     TZ: America/Anchorage
     PUID: "1100"

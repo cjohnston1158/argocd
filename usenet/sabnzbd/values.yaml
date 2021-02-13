@@ -1,4 +1,7 @@
 sabnzbd:
+  image:
+    repository: linuxserver/sabnzbd
+    tag: 2.3.9-0ubuntu1jcfp218.04-ls67
   timezone: America/Anchorage
   puid: "1100"
   pgid: "1100"

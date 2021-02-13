@@ -1,4 +1,7 @@
 nzbhydra2:
+  image:
+    repository: linuxserver/nzbhydra2
+    tag: v2.26.0-ls14
   timezone: America/Anchorage
   puid: "1100"
   pgid: "1100"
