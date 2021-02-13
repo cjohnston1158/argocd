@@ -14,7 +14,6 @@ organizr:
         traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
       path: /
     persistence:
-      type: statefulset
       config:
         enabled: true
     #podAnnotations:
