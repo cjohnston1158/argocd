@@ -1,5 +1,8 @@
 organizr:
-  organizr:
-    ingress:
-      hosts:
-        - host: organizr.in.lab
+  ingress:
+    hosts:
+      - host: organizr.in.lab
+        paths:
+          - path: /
+            # Ignored if not kubeVersion >= 1.14-0
+            pathType: Prefix
