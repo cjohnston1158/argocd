@@ -15,7 +15,11 @@ kube-prometheus-stack:
             traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
         paths:
             - /
-   
+      alertmanagerSpec:
+        image:
+          repository: quay.io/prometheus/alertmanager
+          tag: v0.21.0
+
     grafana:
         fullnameOverride: grafana
         adminPassword: prom-operator # change me?
@@ -37,7 +41,7 @@ kube-prometheus-stack:
           finalizers: []
           # subPath: ""
           # existingClaim:
-    
+
     prometheus-node-exporter:
         fullnameOverride: node-exporter
 
@@ -51,6 +55,9 @@ kube-prometheus-stack:
           paths:
               - /
         prometheusSpec:
+            image:
+              repository: quay.io/prometheus/prometheus
+              tag: v2.24.0
             ruleSelectorNilUsesHelmValues: false
             serviceMonitorSelectorNilUsesHelmValues: false
             podMonitorSelectorNilUsesHelmValues: false
@@ -71,6 +78,12 @@ kube-prometheus-stack:
     prometheusOperator:
         kubeletService:
           namespace: llama
+        image:
+          repository: quay.io/prometheus-operator/prometheus-operator
+          tag: v0.45.0
+        prometheusConfigReloaderImage:
+          repository: quay.io/prometheus-operator/prometheus-config-reloader
+          tag: v0.45.0
 
     kube-state-metrics:
         fullnameOverride: kube-state-metrics
