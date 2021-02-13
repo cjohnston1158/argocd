@@ -1,18 +1,18 @@
 organizr:
-    image:
-      organization: linuxserver
-    env:
-      TZ: America/Anchorage
-      PUID: "1100"
-      PGID: "1100"
-    ingress:
+  image:
+    organization: linuxserver
+  env:
+    TZ: America/Anchorage
+    PUID: "1100"
+    PGID: "1100"
+  ingress:
+    enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
+  persistence:
+    config:
       enabled: true
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.tls: "true"
-        traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
-    persistence:
-      config:
-        enabled: true
-    #podAnnotations:
-    #  backup.velero.io/backup-volumes: config
+  #podAnnotations:
+  #  backup.velero.io/backup-volumes: config

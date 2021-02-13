@@ -1,4 +1,7 @@
 nzbhydra2:
-    ingress:
-        hosts: [nzbhydra.in.lab]
-        path: "/"
+  hosts:
+    - host: nzbhydra.in.lab
+      paths:
+        - path: /
+          # Ignored if not kubeVersion >= 1.14-0
+          pathType: Prefix

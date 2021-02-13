@@ -1,8 +1,4 @@
 sonarr:
-    sonarr:
-        ingress:
-            hosts:
-                - host: in.lab
-                  paths: [/sonarr]
-                - host: sonarr.in.lab
-                  paths: [/]
+  hosts:
+    - host: sonarr.in.lab
+      paths: [/]
