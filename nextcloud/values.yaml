@@ -95,6 +95,8 @@ nextcloud:
     accessMode: ReadWriteOnce
     size: "10Gi"
     storageClassName: nfs-client
+    mountOptions:
+      - async
 
   ## Prometheus Exporter / Metrics
   ##
