@@ -27,6 +27,7 @@ nfs-client-provisioner:
 
     # Set access mode - ReadWriteOnce, ReadOnlyMany or ReadWriteMany
     accessModes: ReadWriteMany
+    defaultClass: true
 
 
   resources: {}
