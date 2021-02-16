@@ -117,6 +117,6 @@ nextcloud:
       tag: v0.4.0
       pullPolicy: IfNotPresent
   livenessProbe:
-    initialDelaySeconds: 90
+    initialDelaySeconds: 300
   readinessProbe:
-    initialDelaySeconds: 90
+    initialDelaySeconds: 300
