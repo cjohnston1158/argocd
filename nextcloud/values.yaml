@@ -27,7 +27,7 @@ nextcloud:
       name: Admin
 
     ## Password for administrative user (default: a 10 char. alpahnumerical random password will be generated)
-    password: changeme
+      password: changeme
 
     trustedDomains: "nextcloud.in.lab"
 

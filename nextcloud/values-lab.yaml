@@ -8,4 +8,4 @@ nextcloud:
       name: Admin
 
     ## Password for administrative user (default: a 10 char. alpahnumerical random password will be generated)
-    password: password
+      password: password
