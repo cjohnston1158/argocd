@@ -99,6 +99,9 @@ nextcloud:
     mountOptions:
       - async
 
+  nginx:
+    ## You need to set an fpm version of the image for nextcloud if you want to use nginx!
+    enabled: true
   ## Prometheus Exporter / Metrics
   ##
   metrics:
