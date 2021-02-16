@@ -3,3 +3,7 @@ nextcloud:
     host: nextcloud.in.lab
     username: admin
     password: password
+  livenessProbe:
+    enabled: false
+  readinessProbe:
+    enabled: false
