@@ -1,9 +1,11 @@
 nextcloud:
-  nextcloud:
-    host: nextcloud.in.lab
-    username: admin
+  ## Nextcloud specific configuration
+  settings:
+
+    ## Nextcloud administrative user
+    admin:
+      ## Administrative user name
+      name: Admin
+
+    ## Password for administrative user (default: a 10 char. alpahnumerical random password will be generated)
     password: password
-  livenessProbe:
-    enabled: false
-  readinessProbe:
-    enabled: false

@@ -1,121 +1,64 @@
 nextcloud:
-## ref: https://hub.docker.com/r/library/nextcloud/tags/
   image:
-    repository: nextcloud
-    tag: 20.0.7
-    pullPolicy: IfNotPresent
+    tag: "20.0.7-apache"
 
   ingress:
     enabled: true
-    #servicePort: https
+    maxBodySize: 64m
     annotations:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.tls: "true"
       traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
 
-  nextcloud:
-    host: nextcloud.in.lab
-    username: admin
+    ## Hosts
+    hosts:
+      - host: nextcloud.in.lab
+
+  env:
+    TZ: America/Anchorage
+
+
+  ## Nextcloud specific configuration
+  settings:
+
+    ## Nextcloud administrative user
+    admin:
+      ## Administrative user name
+      name: Admin
+
+    ## Password for administrative user (default: a 10 char. alpahnumerical random password will be generated)
     password: changeme
-    ## Use an existing secret
-    existingSecret:
-      enabled: false
-      # secretName: nameofsecret
-      # usernameKey: username
-      # passwordKey: password
-      # smtpUsernameKey: smtp_username
-      # smtpPasswordKey: smtp_password
-    update: 0
-    datadir: /var/www/html/data
-    tableprefix:
-    persistence:
-      subPath: data
-    mail:
-      enabled: false
-      fromAddress: user
-      domain: domain.com
-      smtp:
-        host: domain.com
-        secure: ssl
-        port: 465
-        authtype: LOGIN
-        name: user
-        password: pass
 
-  # For example, to use S3 as primary storage
-  # ref: https://docs.nextcloud.com/server/13/admin_manual/configuration_files/primary_storage.html#simple-storage-service-s3
-  #
-  #  configs:
-  #    s3.config.php: |-
-  #      <?php
-  #      $CONFIG = array (
-  #        'objectstore' => array(
-  #          'class' => '\\OC\\Files\\ObjectStore\\S3',
-  #          'arguments' => array(
-  #            'bucket'     => 'my-bucket',
-  #            'autocreate' => true,
-  #            'key'        => 'xxx',
-  #            'secret'     => 'xxx',
-  #            'region'     => 'us-east-1',
-  #            'use_ssl'    => true
-  #          )
-  #        )
-  #      );
+    trustedDomains: "nextcloud.in.lab"
 
-  ## Strategy used to replace old pods
-  ## IMPORTANT: use with care, it is suggested to leave as that for upgrade purposes
-  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
-    strategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxSurge: 1
-        maxUnavailable: 0
+  ## Storage parameters
+  storage:
+    ## Nextcloud storage (all Nextcloud internal files, plugins, extensions etc.)
+    nextcloud:
+      ## Set persistentVolumenClaimName to reference an existing PVC
+      persistentVolumeClaimName:
 
+      ## Alternative set requestedSize to define a size for a dynmaically created PVC
+      requestedSize: 1Gi
 
-  # Extra mounts for the pods. Example shown is for connecting a legacy NFS volume
-  # to NextCloud pods in Kubernetes. This can then be configured in External Storage
-  extraVolumes:
-  #  - name: nfs
-  #    nfs:
-  #      server: "10.0.0.1"
-  #      path: "/nextcloud_data"
-  #      readOnly: false
-  extraVolumeMounts:
-  #  - name: nfs
-  #    mountPath: "/legacy_data"
+      ## the storage class name
+      className: nfs-client
 
+      ## Default access mode (ReadWriteOnce)
+      accessModes:
+        - ReadWriteOnce
 
-  ## Enable persistence using Persistent Volume Claims
-  ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
-  persistence:
-    # Nextcloud Data (/var/www/html)
-    enabled: true
-    annotations: {}
-    type: pvc
-    accessMode: ReadWriteOnce
-    size: "10Gi"
-    storageClass: nfs-client
-    mountOptions:
-      - async
+    ## Nextcloud user data storage
+    nextcloudData:
+      ## Set persistentVolumenClaimName to reference an existing PVC
+      persistentVolumeClaimName:
 
-  nginx:
-    ## You need to set an fpm version of the image for nextcloud if you want to use nginx!
-    enabled: true
-  ## Prometheus Exporter / Metrics
-  ##
-  metrics:
-    enabled: true
+      ## Alternative set requestedSize to define a size for a dynmaically created PVC
+      requestedSize: 10Gi
 
-    replicaCount: 1
-    # The metrics exporter needs to know how you serve Nextcloud either http or https
-    https: false
-    timeout: 5s
+      ## the storage class name
+      className: nfs-client
 
-    image:
-      repository: xperimental/nextcloud-exporter
-      tag: v0.4.0
-      pullPolicy: IfNotPresent
-  livenessProbe:
-    initialDelaySeconds: 300
-  readinessProbe:
-    initialDelaySeconds: 300
+      ## Default access mode (ReadWriteOnce)
+      accessModes:
+        - ReadWriteOnce
