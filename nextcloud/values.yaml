@@ -8,7 +8,6 @@ nextcloud:
   ingress:
     enabled: true
     #servicePort: https
-  annotations:
     annotations:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.tls: "true"
