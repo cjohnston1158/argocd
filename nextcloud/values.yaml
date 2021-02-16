@@ -7,6 +7,7 @@ nextcloud:
 
   ingress:
     enabled: true
+    #servicePort: https
   annotations:
     annotations:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
@@ -94,7 +95,7 @@ nextcloud:
     type: pvc
     accessMode: ReadWriteOnce
     size: "10Gi"
-    storageClassName: nfs-client
+    storageClass: nfs-client
     mountOptions:
       - async
 
