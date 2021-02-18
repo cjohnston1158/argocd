@@ -1,6 +1,6 @@
 nextcloud:
   nextcloud:
-    host: nextcloud.in.lab
+    host: nc.in.lab
     username: admin
     password: password
   livenessProbe:
