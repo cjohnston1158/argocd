@@ -1,8 +1,8 @@
 nzbget:
   image:
     organization: linuxserver
-    repository: nzbget
-    tag: v21.0-ls71
+    repository: linuxserver/nzbget
+    tag: version-v21.0
   env:
     TZ: America/Anchorage
     PUID: "1100"
