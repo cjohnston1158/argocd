@@ -1,15 +1,14 @@
 sabnzbd:
   image:
     repository: linuxserver/sabnzbd
-    tag: 2.3.9-0ubuntu1jcfp218.04-ls67
-  timezone: America/Anchorage
-  puid: "1100"
-  pgid: "1100"
+    tag: version-3.1.0
+  env:
+    timezone: America/Anchorage
+    puid: "1100"
+    pgid: "1100"
   ingress:
     enabled: true
     annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      traefik.ingress.kubernetes.io/router.tls: "true"
       traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
   persistence:
     config:
