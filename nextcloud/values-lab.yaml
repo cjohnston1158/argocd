@@ -7,3 +7,5 @@ nextcloud:
     enabled: false
   readinessProbe:
     enabled: false
+  cronjob:
+    curlInsecure: true
