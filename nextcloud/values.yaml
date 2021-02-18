@@ -1,7 +1,4 @@
 nextcloud:
-  ## Official nextcloud image version
-  ## ref: https://hub.docker.com/r/library/nextcloud/tags/
-  ##
   image:
     repository: nextcloud
     tag: 20.0.7-fpm-alpine
@@ -13,40 +10,7 @@ nextcloud:
   ingress:
     enabled: true
     annotations:
-      #  traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      #traefik.ingress.kubernetes.io/router.tls: "true"
       traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
-    #  nginx.ingress.kubernetes.io/proxy-body-size: 4G
-    #  kubernetes.io/tls-acme: "true"
-    #  cert-manager.io/cluster-issuer: letsencrypt-prod
-    #  nginx.ingress.kubernetes.io/server-snippet: |-
-    #    server_tokens off;
-    #    proxy_hide_header X-Powered-By;
-
-    #    rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
-    #    rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
-    #    rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
-    #    location = /.well-known/carddav {
-    #      return 301 $scheme://$host/remote.php/dav;
-    #    }
-    #    location = /.well-known/caldav {
-    #      return 301 $scheme://$host/remote.php/dav;
-    #    }
-    #    location = /robots.txt {
-    #      allow all;
-    #      log_not_found off;
-    #      access_log off;
-    #    }
-    #    location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
-    #      deny all;
-    #    }
-    #    location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
-    #      deny all;
-    #    }
-    # tls:
-    #   - secretName: nextcloud-tls
-    #     hosts:
-    #       - nextcloud.kube.home
     labels: {}
 
 
@@ -181,34 +145,6 @@ nextcloud:
     name: nextcloud
 
   ##
-  ## External database configuration
-  ##
-  externalDatabase:
-    enabled: false
-
-    ## Supported database engines: mysql or postgresql
-    type: mysql
-
-    ## Database host
-    host:
-
-    ## Database user
-    user: nextcloud
-
-    ## Database password
-    password:
-
-    ## Database name
-    database: nextcloud
-
-    ## Use a existing secret
-    existingSecret:
-      enabled: false
-      # secretName: nameofsecret
-      # usernameKey: username
-      # passwordKey: password
-
-  ##
   ## MariaDB chart configuration
   ##
   mariadb:
@@ -232,18 +168,6 @@ nextcloud:
         # storageClass: ""
         accessMode: ReadWriteOnce
         size: 8Gi
-
-  postgresql:
-    enabled: false
-    global:
-      postgresql:
-        postgresqlUsername: nextcloud
-        postgresqlPassword: changeme
-        postgresqlDatabase: nextcloud
-    persistence:
-      enabled: false
-      # storageClass: ""
-
   redis:
     enabled: true
     usePassword: true
@@ -270,27 +194,6 @@ nextcloud:
     curlInsecure: false
     failedJobsHistoryLimit: 5
     successfulJobsHistoryLimit: 2
-    # If not set, nextcloud deployment one will be set
-    # resources:
-      # We usually recommend not to specify default resources and to leave this as a conscious
-      # choice for the user. This also increases chances charts run on environments with little
-      # resources, such as Minikube. If you do want to specify resources, uncomment the following
-      # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-      # limits:
-      #  cpu: 100m
-      #  memory: 128Mi
-      # requests:
-      #  cpu: 100m
-      #  memory: 128Mi
-
-    # If not set, nextcloud deployment one will be set
-    # nodeSelector: {}
-
-    # If not set, nextcloud deployment one will be set
-    # tolerations: []
-
-    # If not set, nextcloud deployment one will be set
-    # affinity: {}
 
   service:
     type: ClusterIP
@@ -305,21 +208,7 @@ nextcloud:
     # Nextcloud Data (/var/www/html)
     enabled: true
     annotations: {}
-    ## nextcloud data Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
-    # storageClass: "-"
-
-    ## A manually managed Persistent Volume and Claim
-    ## Requires persistence.enabled: true
-    ## If defined, PVC must be created manually before volume will be bound
-    # existingClaim:
-
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
     size: 8Gi
 
   resources: {}
@@ -390,16 +279,6 @@ nextcloud:
       repository: xperimental/nextcloud-exporter
       tag: v0.3.0
       pullPolicy: IfNotPresent
-
-    ## Metrics exporter resource requests and limits
-    ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
-    ##
-    # resources: {}
-
-    ## Metrics exporter pod Annotation and Labels
-    # podAnnotations: {}
-
-    # podLabels: {}
 
     service:
       type: ClusterIP
