@@ -1,7 +1,6 @@
 traefik:
   image:
     name: traefik
-    # defaults to appVersion
     tag: "2.4"
 
   globalArguments:
@@ -27,4 +26,4 @@ traefik:
 templates:
     install_cert: false
     http_redirect:
-        enable: true
+      enable: false
