@@ -1,8 +1,0 @@
-nzbget:
-  ingress:
-    hosts:
-      - host: nzbget.in.lab
-        paths:
-          - path: /
-            # Ignored if not kubeVersion >= 1.14-0
-            pathType: Prefix
