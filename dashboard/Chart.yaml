@@ -3,7 +3,7 @@ apiVersion: v2
 version: 1.0.0
 dependencies:
   - name: kubernetes-dashboard
-    version: '4.0.1'
+    version: '4.0.2'
     repository: https://kubernetes.github.io/dashboard/
   - name: metrics-server
     version: 2.11.4
