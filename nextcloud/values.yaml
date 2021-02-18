@@ -4,7 +4,7 @@ nextcloud:
   ##
   image:
     repository: nextcloud
-    tag: 20.0.7-apache
+    tag: 20.0.7-fpm-alpine
     pullPolicy: IfNotPresent
 
   ## Allowing use of ingress controllers
@@ -162,7 +162,7 @@ nextcloud:
 
   nginx:
     ## You need to set an fpm version of the image for nextcloud if you want to use nginx!
-    enabled: false
+    enabled: true
     image:
       repository: nginx
       tag: alpine
