@@ -2,7 +2,7 @@ radarr:
   image:
     repository: linuxserver/radarr
     pullPolicy: IfNotPresent
-    tag: version-3.0.1.4259
+    tag: version-3.0.2.4552
   env:
     TZ: America/Achorage
     PUID: "1100"
