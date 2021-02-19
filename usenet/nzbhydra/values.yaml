@@ -1,7 +1,7 @@
 nzbhydra2:
   image:
     repository: linuxserver/nzbhydra2
-    tag: version-v3.8.1
+    tag: version-v3.12.0
   env:
     TZ: America/Anchorage
     puid: "1100"
