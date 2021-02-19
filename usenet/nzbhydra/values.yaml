@@ -1,15 +1,14 @@
 nzbhydra2:
   image:
     repository: linuxserver/nzbhydra2
-    tag: v2.27.2-ls14
-  timezone: America/Anchorage
-  puid: "1100"
-  pgid: "1100"
+    tag: version-v3.8.1
+  env:
+    TZ: America/Anchorage
+    puid: "1100"
+    pgid: "1100"
   ingress:
     enabled: true
     annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      traefik.ingress.kubernetes.io/router.tls: "true"
       traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
   persistence:
     config:
