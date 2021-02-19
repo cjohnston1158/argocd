@@ -10,8 +10,6 @@ radarr:
   ingress:
     enabled: true
     annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      traefik.ingress.kubernetes.io/router.tls: "true"
       traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
   persistence:
     config:
