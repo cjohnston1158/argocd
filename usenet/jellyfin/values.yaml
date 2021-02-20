@@ -1,7 +1,7 @@
 jellyfin:
   image:
     repository: linuxserver/jellyfin
-    tag: version-10.6.4-1
+    tag: latest
   env:
     TZ: America/Anchorage
     PUID: "1100"
