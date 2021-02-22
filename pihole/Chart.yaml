@@ -2,6 +2,6 @@ name: pihole
 apiVersion: v2
 version: 1.0.0
 dependencies:
-  - name: pihole
+  - name: charts/pihole
     version: '5.2.4'
     repository: https://mojo2600.github.io/pihole-kubernetes/
