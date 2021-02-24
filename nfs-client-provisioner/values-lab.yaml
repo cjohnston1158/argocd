@@ -1,4 +1,4 @@
-nfs-client-provisioner:
+nfs-subdir-external-provisioner:
   nfs:
     server: 10.10.12.10
     path: /volume1/dev_cluster
