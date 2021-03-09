@@ -155,7 +155,10 @@ nextcloud:
   mariadb:
     ## Whether to deploy a mariadb server to satisfy the applications database requirements. To use an external database set this to false and configure the externalDatabase parameters
     enabled: true
-
+    image:
+      registry: docker.io
+      repository: bitnami/mariadb
+      tag: 10.5.9-debian-10-r0
     db:
       name: nextcloud
       user: nextcloud
@@ -175,6 +178,10 @@ nextcloud:
         size: 8Gi
   redis:
     enabled: true
+    image:
+      registry: docker.io
+      repository: bitnami/redis
+      tag: 6.0.12-debian-10-r3
     usePassword: true
     password: 'password'
 
