@@ -57,7 +57,7 @@ kube-prometheus-stack:
         prometheusSpec:
             image:
               repository: quay.io/prometheus/prometheus
-              tag: v2.25.0
+              tag: v2.25.1
             ruleSelectorNilUsesHelmValues: false
             serviceMonitorSelectorNilUsesHelmValues: false
             podMonitorSelectorNilUsesHelmValues: false
