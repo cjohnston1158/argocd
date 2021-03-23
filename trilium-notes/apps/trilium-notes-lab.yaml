@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-    name: trilium-notes
-    namespace: trilium-notes
+  name: trilium-notes
+  namespace: trilium-notes
 spec:
-    destination:
-        namespace: trilium-notes
-        server: https://kubernetes.default.svc
-    project: default
-    source:
-        path: trilium-notes
-        targetRevision: HEAD
-        helm:
-            valueFiles:
-                - values.yaml
-        repoURL: https://github.com/cjohnston1158/argocd.git
-    syncPolicy:
-        automated: {}
-        syncOptions:
-          - CreateNamespace=true
+  destination:
+    namespace: trilium-notes
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: trilium-notes
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+    repoURL: https://github.com/cjohnston1158/argocd.git
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
