@@ -3,7 +3,7 @@ trilium-notes:
 
   image:
     repository: zadam/trilium
-    tag: 0.45.5
+    tag: 0.46.5
     pullPolicy: IfNotPresent
 
 
