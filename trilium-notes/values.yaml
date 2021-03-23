@@ -1,0 +1,36 @@
+trilium-notes:
+  replicaCount: 1
+
+  image:
+    repository: zadam/trilium
+    tag: 0.45.5
+    pullPolicy: IfNotPresent
+
+
+  serviceAccount:
+    create: true
+    annotations: {}
+    # If not set and create is true, a name is generated using the fullname template
+    name: 'admin'
+
+  dataDir: /srv/trilium-data
+
+  persistentVolume:
+    enabled: false
+    accessModes:
+      - ReadWriteOnce
+    annotations: {}
+    size: 2Gi
+
+  ingress:
+    enabled: ingres
+    annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: notes.in.lab
+        paths: []
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
