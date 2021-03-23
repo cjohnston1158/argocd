@@ -2,14 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
     name: trilium-notes
-    namespace: trilium
+    namespace: trilium-notes
 spec:
     destination:
-        namespace: trilium
+        namespace: trilium-notes
         server: https://kubernetes.default.svc
     project: default
     source:
-        path: trilium
+        path: trilium-notes
         targetRevision: HEAD
         helm:
             valueFiles:
