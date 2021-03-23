@@ -1,37 +1,38 @@
 trilium-notes:
-  replicaCount: 1
+  trilium-notes:
+    replicaCount: 1
 
-  image:
-    repository: zadam/trilium
-    tag: 0.46.5
-    pullPolicy: IfNotPresent
+    image:
+      repository: zadam/trilium
+      tag: 0.46.5
+      pullPolicy: IfNotPresent
 
 
-  serviceAccount:
-    create: true
-    annotations: {}
-    # If not set and create is true, a name is generated using the fullname template
-    name: 'admin'
+    serviceAccount:
+      create: true
+      annotations: {}
+      # If not set and create is true, a name is generated using the fullname template
+      name: 'admin'
 
-  dataDir: /srv/trilium-data
+    dataDir: /srv/trilium-data
 
-  persistentVolume:
-    enabled: false
-    accessModes:
-      - ReadWriteOnce
-    annotations: {}
-    size: 2Gi
+    persistentVolume:
+      enabled: false
+      accessModes:
+        - ReadWriteOnce
+      annotations: {}
+      size: 2Gi
 
-  ingress:
-    enabled: ingres
-    annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      traefik.ingress.kubernetes.io/router.tls: "true"
-      traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
-    hosts:
-      - host: notes.in.lab
-        paths: []
-    tls: []
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - chart-example.local
+    ingress:
+      enabled: ingres
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.middlewares: "traefik-local-ipwhitelist@kubernetescrd"
+      hosts:
+        - host: notes.in.lab
+          paths: /
+      tls: []
+      #  - secretName: chart-example-tls
+      #    hosts:
+      #      - chart-example.local
