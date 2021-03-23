@@ -1,20 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-    name: pihole
-    namespace: argocd
+    name: trilium-notes
+    namespace: trilium
 spec:
     destination:
-        namespace: pihole
+        namespace: trilium
         server: https://kubernetes.default.svc
     project: default
     source:
-        path: pihole
+        path: trilium
         targetRevision: HEAD
         helm:
             valueFiles:
                 - values.yaml
-                - values-lab.yaml
         repoURL: https://github.com/cjohnston1158/argocd.git
     syncPolicy:
         automated: {}
