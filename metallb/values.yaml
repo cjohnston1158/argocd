@@ -14,4 +14,4 @@ metallb:
     image:
       registry: docker.io
       repository: bitnami/metallb-speaker
-      tag: 0.9.5-debian-10-r31
+      tag: 0.9.6-debian-10-r31
