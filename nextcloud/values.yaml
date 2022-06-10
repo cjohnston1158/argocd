@@ -181,7 +181,7 @@ nextcloud:
     image:
       registry: docker.io
       repository: bitnami/redis
-      tag: 6.2.7-debian-10-r3
+      tag: 7.0.0-debian-10-r3
     usePassword: true
     password: 'password'
 
