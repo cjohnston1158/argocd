@@ -158,7 +158,7 @@ nextcloud:
     image:
       registry: docker.io
       repository: bitnami/mariadb
-      tag: 10.5.9-debian-10-r0
+      tag: 10.7.4-debian-10-r0
     db:
       name: nextcloud
       user: nextcloud
