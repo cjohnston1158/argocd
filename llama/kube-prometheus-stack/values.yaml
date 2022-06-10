@@ -83,7 +83,7 @@ kube-prometheus-stack:
           tag: v0.47.0
         prometheusConfigReloaderImage:
           repository: quay.io/prometheus-operator/prometheus-config-reloader
-          tag: v0.47.0
+          tag: v0.56.2
 
     kube-state-metrics:
         fullnameOverride: kube-state-metrics
