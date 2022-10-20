@@ -80,7 +80,7 @@ kube-prometheus-stack:
           namespace: llama
         image:
           repository: quay.io/prometheus-operator/prometheus-operator
-          tag: v0.58.0
+          tag: v0.60.1
         prometheusConfigReloaderImage:
           repository: quay.io/prometheus-operator/prometheus-config-reloader
           tag: v0.58.0
